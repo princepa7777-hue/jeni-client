@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dr. jeni | Healthy Skin Starts With the Right Care</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f6fbf5;
+      --surface: #f0f5f0;
+      --surface-2: #ebefea;
+      --sage-light: #cfe9d3;
+      --primary: #4e6554;
+      --primary-dark: #374d3d;
+      --text: #181d1a;
+      --text-body: #424843;
+      --text-muted: #737972;
+      --pink: #fdc4c2;
+      --white: #ffffff;
+      --star: #d9a441;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .serif { font-family: 'Playfair Display', Georgia, serif; }
+
+    .section { padding: 64px 68px; }
+    .section-narrow { padding: 64px 20px; }
+    .container { max-width: 1240px; margin: 0 auto; padding: 0 48px; }
+
+    .eyebrow {
+      font-size: 12px; font-weight: 700; letter-spacing: 1.2px;
+      text-transform: uppercase; color: var(--primary-dark);
+    }
+    .h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 500; font-size: 40px; letter-spacing: -0.6px;
+      line-height: 48px; color: var(--text);
+    }
+    .lead { font-size: 16px; line-height: 26px; color: var(--text-body); }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 16px 32px; border-radius: 9999px; border: none; cursor: pointer;
+      font-family: inherit; font-size: 14px; font-weight: 600; letter-spacing: 0.56px;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 14px rgba(0,0,0,.12); }
+    .btn-primary { background: var(--primary); color: var(--white); box-shadow: 0 4px 6px -1px rgba(0,0,0,.1), 0 2px 4px -2px rgba(0,0,0,.1); }
+    .btn-secondary { background: var(--surface); color: var(--text); box-shadow: 0 1px 1px rgba(0,0,0,.05); }
+    .btn-white { background: var(--white); color: var(--text); box-shadow: 0 10px 15px -3px rgba(0,0,0,.1), 0 4px 6px -4px rgba(0,0,0,.1); }
+    .btn:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+    .btn-block { width: 100%; padding: 16px 24px; }
+
+    .pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      border-radius: 9999px; font-size: 11px; font-weight: 600; letter-spacing: .66px;
+      padding: 4px 12px;
+    }
+
+    .stars { color: var(--star); letter-spacing: 2px; font-size: 14px; }
+
+    /* ---------- HERO ---------- */
+    .hero { padding-top: 80px; }
+    .hero-grid {
+      display: grid; grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 64px; align-items: center;
+    }
+    .hero-left { grid-column: 1 / span 7; }
+    .hero-right { grid-column: 8 / span 5; position: relative; height: 520px; display: flex; justify-content: flex-end; }
+
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--surface-2); padding: 6px 16px; border-radius: 9999px;
+      box-shadow: 0 1px 1px rgba(0,0,0,.05);
+      font-size: 12px; font-weight: 600; letter-spacing: .6px; color: var(--primary-dark);
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', Georgia, serif; font-weight: 400;
+      font-size: 56px; line-height: 62.72px; letter-spacing: -1.12px;
+      color: var(--text); margin-top: 22px; padding-right: 58px;
+    }
+    .hero .lead { max-width: 576px; margin-top: 24px; font-size: 18px; line-height: 29.25px; }
+    .hero-buttons { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin-top: 32px; }
+    .trust-row {
+      display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 32px;
+      font-size: 12px; color: var(--text-body);
+    }
+    .trust-row .rating { display: flex; align-items: center; gap: 4px; }
+    .trust-row .rating b { color: var(--text); margin-left: 4px; }
+    .trust-row .sep { color: #c3c8c1; }
+    .trust-row .live { display: flex; align-items: center; gap: 6px; color: var(--primary-dark); font-weight: 600; }
+    .trust-row .live::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--primary-dark); }
+
+    .portrait-wrap { position: relative; width: 100%; max-width: 420px; height: 520px; }
+    .portrait-glow {
+      position: absolute; inset: -16px; border-radius: 48px; opacity: .7; filter: blur(40px);
+      background: linear-gradient(49.5deg, rgba(253,196,194,.3) 0%, rgba(207,233,211,.3) 100%);
+    }
+    .portrait-card {
+      position: relative; height: 100%; overflow: hidden;
+      background: var(--surface);
+      border-radius: 224px 224px 32px 32px;
+      box-shadow: 0 20px 25px -5px rgba(0,0,0,.1), 0 8px 10px -6px rgba(0,0,0,.1);
+    }
+    .portrait-card img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+    .credential-badge {
+      position: absolute; left: 20px; right: 20px; bottom: 20px;
+      background: rgba(255,255,255,.9); backdrop-filter: blur(12px);
+      border-radius: 16px; padding: 16px; display: flex; align-items: center; gap: 14px;
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,.1), 0 4px 6px -4px rgba(0,0,0,.1);
+    }
+    .icon-circle {
+      width: 40px; height: 40px; border-radius: 50%; background: var(--sage-light);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .credential-badge h4 { font-family: 'Playfair Display', Georgia, serif; font-size: 14px; color: var(--primary-dark); }
+    .credential-badge p { font-size: 11px; color: var(--text-muted); letter-spacing: .66px; font-weight: 600; }
+    .floating-tag {
+      position: absolute; top: 40px; right: -8px; background: var(--white);
+      padding: 8px 16px; border-radius: 9999px; display: flex; align-items: center; gap: 8px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,.1), 0 2px 4px -2px rgba(0,0,0,.1);
+      font-size: 11px; font-weight: 600; letter-spacing: .66px; color: var(--primary-dark);
+    }
+
+    /* ---------- EXPERIENCE ---------- */
+    .panel {
+      background: var(--surface); border-radius: 24px; padding: 56px;
+      box-shadow: 0 1px 1px rgba(0,0,0,.05);
+      display: flex; flex-direction: column; gap: 48px;
+    }
+    .panel-header { max-width: 768px; display: flex; flex-direction: column; gap: 16px; }
+    .panel-header .lead { font-size: 16px; }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .stat-card {
+      background: var(--white); border-radius: 16px; padding: 24px;
+      box-shadow: 0 1px 1px rgba(0,0,0,.05); display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .stat-num { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: 44px; color: var(--primary-dark); line-height: 44px; }
+    .stat-label { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: 18px; color: var(--text); margin-top: 10px; }
+    .stat-desc { font-size: 14px; color: var(--text-body); line-height: 22px; margin-top: 12px; }
+    .credentials-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px 24px;
+      background: rgba(235,239,234,.5); padding: 32px; border-radius: 16px;
+    }
+    .cred { display: flex; gap: 16px; align-items: flex-start; }
+    .cred-icon {
+      width: 48px; height: 48px; border-radius: 12px; background: var(--primary);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .cred h4 { font-family: 'Playfair Display', Georgia, serif; font-weight: 600; font-size: 20px; line-height: 28px; color: var(--text); }
+    .cred p { font-size: 14px; line-height: 22px; color: var(--text-body); }
+
+    /* ---------- AUDIT ---------- */
+    .audit-panel {
+      position: relative; overflow: hidden;
+      background: var(--white); border-radius: 24px; padding: 56px;
+      box-shadow: 0 20px 25px -5px rgba(0,0,0,.1), 0 8px 10px -6px rgba(0,0,0,.1);
+      display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 48px; align-items: center;
+    }
+    .audit-glow-1 { position: absolute; right: -96px; top: -96px; width: 384px; height: 384px; border-radius: 50%; background: rgba(253,196,194,.2); filter: blur(64px); pointer-events: none; }
+    .audit-glow-2 { position: absolute; left: -96px; bottom: -96px; width: 384px; height: 384px; border-radius: 50%; background: rgba(207,233,211,.3); filter: blur(64px); pointer-events: none; }
+    .audit-left { grid-column: 1 / span 7; display: flex; flex-direction: column; gap: 24px; position: relative; }
+    .audit-right { grid-column: 8 / span 5; position: relative; display: flex; justify-content: center; }
+    .pill-sage { background: var(--sage-light); color: #0a2013; padding: 6px 14px; font-size: 12px; font-weight: 700; letter-spacing: .6px; text-transform: uppercase; align-self: flex-start; border-radius: 9999px; }
+    .checklist-title { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: 16px; letter-spacing: .4px; text-transform: uppercase; color: var(--primary-dark); padding-top: 8px; }
+    .checklist { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .checklist li { display: flex; gap: 12px; align-items: flex-start; font-size: 14px; line-height: 22px; color: var(--text); }
+    .checklist svg { flex-shrink: 0; margin-top: 3px; }
+    .medical-note {
+      background: var(--surface); padding: 16px; border-radius: 12px;
+      display: flex; gap: 10px; align-items: flex-start; font-size: 12px; line-height: 19.5px; color: var(--text-body);
+    }
+
+    .price-card {
+      background: var(--surface-2); border-radius: 24px; padding: 32px;
+      width: 100%; max-width: 384px; display: flex; flex-direction: column; align-items: center;
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,.1), 0 4px 6px -4px rgba(0,0,0,.1);
+      position: relative;
+    }
+    .price-card .pill { background: var(--pink); color: #794e4d; }
+    .old-price { font-size: 14px; color: var(--text-muted); text-decoration: line-through; margin-top: 24px; }
+    .price { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: 64px; letter-spacing: -1.6px; color: var(--primary-dark); line-height: 64px; margin-top: 4px; }
+    .price-note { font-size: 12px; color: var(--text-body); margin-top: 4px; text-align: center; }
+
+    .audit-form { width: 100%; margin-top: 24px; display: flex; flex-direction: column; gap: 12px; }
+    .audit-form label { font-size: 12px; font-weight: 600; color: var(--text-body); display: block; margin-bottom: 4px; }
+    .audit-form input {
+      width: 100%; padding: 13px 16px; border-radius: 12px; border: 1px solid #c3c8c1;
+      background: var(--white); font-family: inherit; font-size: 14px; color: var(--text);
+      outline: none; transition: border-color .2s;
+    }
+    .audit-form input:focus { border-color: var(--primary); }
+    .form-status { font-size: 13px; text-align: center; min-height: 18px; }
+    .form-status.error { color: #a33b38; }
+    .form-status.success { color: var(--primary-dark); font-weight: 600; }
+    .pay-link { display: inline-block; margin-top: 8px; color: var(--primary-dark); font-weight: 700; text-decoration: underline; font-size: 14px; }
+    .hidden { display: none !important; }
+
+    .action-caption { font-size: 12px; color: var(--text-body); text-align: center; margin-top: 4px; }
+    .instant-row { display: flex; gap: 16px; justify-content: center; margin-top: 16px; font-size: 11px; font-weight: 600; letter-spacing: .66px; color: var(--text-muted); flex-wrap: wrap; }
+    .instant-row span { display: flex; gap: 4px; align-items: center; }
+
+    /* ---------- NARRATIVES ---------- */
+    .section-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; padding-bottom: 48px; flex-wrap: wrap; }
+    .section-head-left { max-width: 672px; display: flex; flex-direction: column; gap: 12px; }
+    .section-head-left .lead { font-size: 16px; }
+    .verified-note {
+      background: var(--white); padding: 8px 16px; border-radius: 9999px; font-size: 11px; color: var(--text-muted);
+      display: flex; gap: 8px; align-items: center; box-shadow: 0 1px 1px rgba(0,0,0,.05); font-weight: 600; letter-spacing: .66px;
+    }
+    .cards-3 { display: flex; gap: 32px; }
+    .card-lux {
+      flex: 1; background: var(--white); border-radius: 24px; padding: 32px;
+      box-shadow: 0 1px 1px rgba(0,0,0,.05); display: flex; flex-direction: column; justify-content: space-between; gap: 24px;
+    }
+    .card-lux .top { display: flex; justify-content: space-between; align-items: center; }
+    .quote { font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-size: 18px; line-height: 24.75px; color: var(--text); }
+    .person { display: flex; gap: 14px; align-items: center; padding-top: 16px; margin-top: 24px; }
+    .avatar {
+      width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: 16px; color: var(--primary-dark); flex-shrink: 0;
+    }
+    .person h5 { font-family: 'Playfair Display', Georgia, serif; font-size: 16px; font-weight: 700; color: var(--text); }
+    .person p { font-size: 12px; color: var(--text-body); line-height: 18px; }
+
+    /* ---------- FEEDBACK ---------- */
+    .feedback-head { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 12px; max-width: 672px; margin: 0 auto; }
+    .feedback-head .h2 { text-align: center; }
+    .feedback-head .lead { text-align: center; font-size: 16px; }
+    .banner {
+      background: var(--surface); border-radius: 16px; padding: 24px; margin-top: 32px;
+      display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;
+      box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    }
+    .banner-left { display: flex; gap: 16px; align-items: center; }
+    .g-logo {
+      width: 48px; height: 48px; border-radius: 12px; background: var(--white);
+      display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 1px rgba(0,0,0,.05);
+      font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: 22px; color: #4285f4;
+    }
+    .banner-rating { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: 20px; }
+    .banner-sub { font-size: 12px; color: var(--text-body); }
+    .banner-link { font-size: 12px; font-weight: 700; color: var(--primary-dark); letter-spacing: .6px; }
+    .reviews-grid { display: flex; gap: 24px; margin-top: 32px; }
+    .review {
+      flex: 1; background: var(--white); border-radius: 16px; padding: 24px;
+      box-shadow: 0 1px 1px rgba(0,0,0,.05); display: flex; flex-direction: column; justify-content: space-between; gap: 16px;
+    }
+    .review-top { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-body); }
+    .review-text { font-size: 14px; line-height: 22.75px; color: var(--text); }
+    .review-author { display: flex; gap: 10px; align-items: center; padding-top: 16px; }
+    .review-author .avatar { width: 32px; height: 32px; font-size: 11px; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; }
+    .review-author span { font-size: 12px; font-weight: 600; color: var(--text); letter-spacing: .6px; }
+
+    /* ---------- CTA ---------- */
+    .cta-block {
+      background: var(--primary-dark); border-radius: 40px; padding: 64px; position: relative; overflow: hidden;
+      display: flex; flex-direction: column; align-items: center; gap: 24px; text-align: center;
+      box-shadow: 0 20px 25px -5px rgba(0,0,0,.1), 0 8px 10px -6px rgba(0,0,0,.1);
+    }
+    .cta-block .eyebrow { color: #c7e1cc; }
+    .cta-block .h2 { color: var(--white); max-width: 672px; }
+    .cta-block p { font-size: 18px; line-height: 29.25px; color: rgba(255,255,255,.9); max-width: 672px; }
+    .cta-buttons { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; padding-top: 16px; }
+    .cta-block .btn-primary { background: var(--primary); }
+    .cta-block .reassure { font-size: 12px; color: #c7e1cc; padding-top: 12px; }
+    .cta-deco {
+      position: absolute; right: -48px; bottom: -47px; width: 250px; height: 256px; opacity: .08;
+      pointer-events: none;
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer { background: var(--surface-2); padding: 64px 20px; }
+    .footer-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 40px; padding: 0 48px; max-width: 1240px; margin: 0 auto; }
+    .footer-brand { grid-column: 1 / span 4; display: flex; flex-direction: column; gap: 16px; }
+    .footer-brand .wordmark { display: flex; gap: 12px; align-items: center; }
+    .footer-brand .logo-dot {
+      width: 36px; height: 36px; border-radius: 50%; background: var(--primary);
+      display: flex; align-items: center; justify-content: center; color: var(--white); font-family: 'Playfair Display', Georgia, serif; font-weight: 700;
+    }
+    .footer-brand .wordmark b { font-family: 'Playfair Display', Georgia, serif; font-size: 20px; color: var(--primary-dark); }
+    .footer-brand p { font-size: 14px; line-height: 22px; color: var(--text-body); max-width: 384px; }
+    .reg { background: #dfe4df; padding: 4px 12px; border-radius: 4px; font-size: 11px; font-weight: 600; letter-spacing: .66px; color: var(--text); align-self: flex-start; margin-top: 8px; }
+    .footer-col { display: flex; flex-direction: column; gap: 12px; }
+    .footer-col h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 16px; font-weight: 700; color: var(--text); }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .footer-col li, .footer-col .item { font-size: 14px; line-height: 22px; color: var(--text-body); }
+    .footer-col .item { font-size: 12px; line-height: 18px; display: flex; gap: 8px; align-items: flex-start; }
+    .col-links { grid-column: 5 / span 2; }
+    .col-clinic { grid-column: 7 / span 3; }
+    .col-connect { grid-column: 10 / span 3; }
+    .footer-bottom {
+      max-width: 1240px; margin: 40px auto 0; padding: 33px 48px 0; border-top: 1px solid rgba(195,200,193,.3);
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
+      font-size: 12px; color: var(--text-muted);
+    }
+    .footer-bottom nav { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 1100px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .cards-3, .reviews-grid { flex-direction: column; }
+    }
+    @media (max-width: 900px) {
+      .section, .hero { padding-left: 24px; padding-right: 24px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+      .hero-left, .hero-right { grid-column: auto; }
+      .hero h1 { font-size: 40px; line-height: 48px; padding-right: 0; }
+      .hero-right { height: 460px; justify-content: center; }
+      .portrait-wrap { height: 460px; }
+      .panel, .audit-panel { padding: 32px 24px; }
+      .audit-panel { grid-template-columns: 1fr; }
+      .audit-left, .audit-right { grid-column: auto; }
+      .credentials-grid { grid-template-columns: 1fr; padding: 24px; }
+      .h2 { font-size: 30px; line-height: 38px; }
+      .cta-block { padding: 40px 24px; border-radius: 28px; }
+      .footer-grid { grid-template-columns: 1fr; padding: 0 24px; }
+      .footer-brand, .col-links, .col-clinic, .col-connect { grid-column: auto; }
+      .footer-bottom { padding: 24px 24px 0; }
+    }
+    @media (max-width: 560px) {
+      .stats-grid { grid-template-columns: 1fr; }
+      .hero-buttons .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <main>
+    <!-- ================= HERO ================= -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-left">
+            <div class="badge">
+              <svg width="12" height="15" viewBox="0 0 12 15" fill="none" aria-hidden="true"><path d="M6 0L12 7.5L6 15L0 7.5L6 0Z" fill="#374d3d" opacity=".8"/></svg>
+              Personalised skin and hair care, backed by medical expertise.
+            </div>
+
+            <h1>Healthy Skin Starts With<br />the Right Care.</h1>
+
+            <p class="lead">
+              Your skin deserves more than quick fixes. Get expert dermatological care, honest advice, and treatments that are thoughtfully tailored to your skin's needs.
+            </p>
+
+            <div class="hero-buttons">
+              <a href="#audit" class="btn btn-primary">
+                Book Your Consultation
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8M8 4l3 3-3 3" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a href="#testimonials" class="btn btn-secondary">Explore My Journey</a>
+            </div>
+
+            <div class="trust-row">
+              <div class="rating">
+                <span class="stars" aria-label="5 stars">★★★★★</span>
+                <b>4.9/5</b>
+              </div>
+              <span class="sep">•</span>
+              <span>From verified patient reviews</span>
+              <span class="sep">•</span>
+              <span class="live">In-clinic &amp; Online Consultations available</span>
+            </div>
+          </div>
+
+          <div class="hero-right">
+            <div class="portrait-wrap">
+              <div class="portrait-glow"></div>
+              <div class="portrait-card">
+                <img src="dr-elena-vance.png" alt="Dr. Elena Vance, Consultant Dermatologist" />
+                <div class="credential-badge">
+                  <div class="icon-circle">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z" stroke="#374d3d" stroke-width="2" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="#374d3d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </div>
+                  <div>
+                    <h4>MBBS, MD Dermatology</h4>
+                    <p>100% Evidence-Based Clinical Care</p>
+                  </div>
+                </div>
+              </div>
+              <div class="floating-tag">
+                <svg width="11" height="14" viewBox="0 0 11 14" fill="none" aria-hidden="true"><path d="M5.5 0l1.5 4.5H12L8 7.5l1.5 4.5-4-3-4 3L3 7.5 0 4.5h5L5.5 0z" fill="#d9a441"/></svg>
+                Gold Medalist Dermatologist
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= EXPERIENCE ================= -->
+    <section class="section">
+      <div class="panel">
+        <div class="panel-header">
+          <span class="eyebrow">CLINICAL EXCELLENCE &amp; PEDIGREE</span>
+          <h2 class="h2">Experience That Builds Confidence.</h2>
+          <p class="lead">
+            Every patient's skin journey is different. My focus has always been on understanding those differences and providing care that makes a meaningful difference.
+          </p>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div>
+              <div class="stat-num">[12]+</div>
+              <div class="stat-label">Years of Experience</div>
+            </div>
+            <p class="stat-desc">Dedicated clinical &amp; aesthetic dermatology practice.</p>
+          </div>
+          <div class="stat-card">
+            <div>
+              <div class="stat-num">[8,500]+</div>
+              <div class="stat-label">Happy Patients</div>
+            </div>
+            <p class="stat-desc">Restoring skin confidence through tailored regimens.</p>
+          </div>
+          <div class="stat-card">
+            <div>
+              <div class="stat-num">[14,000]+</div>
+              <div class="stat-label">Successful Treatments</div>
+            </div>
+            <p class="stat-desc">From chronic cystic acne to advanced laser therapies.</p>
+          </div>
+          <div class="stat-card">
+            <div>
+              <div class="stat-num">[25]+</div>
+              <div class="stat-label">Certifications</div>
+            </div>
+            <p class="stat-desc">Global aesthetic, trichology &amp; dermatosurgery credentials.</p>
+          </div>
+        </div>
+
+        <div class="credentials-grid">
+          <div class="cred">
+            <div class="cred-icon">
+              <svg width="22" height="18" viewBox="0 0 22 18" fill="none" aria-hidden="true"><path d="M11 1l10 5-10 5L1 6l10-5z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/><path d="M5 8v4c0 1.5 2.7 3 6 3s6-1.5 6-3V8" stroke="#fff" stroke-width="1.6"/></svg>
+            </div>
+            <div>
+              <h4>Medical Qualifications</h4>
+              <p>MBBS, MD (Dermatology, Venereology &amp; Leprosy) — Gold Medalist Honors</p>
+            </div>
+          </div>
+          <div class="cred">
+            <div class="cred-icon">
+              <svg width="14" height="19" viewBox="0 0 14 19" fill="none" aria-hidden="true"><path d="M7 1v17M3 5h8M3 14h8" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </div>
+            <div>
+              <h4>Dermatology Specialisation</h4>
+              <p>Fellowship in Aesthetic Dermatology, Trichology &amp; Advanced Cutaneous Lasers</p>
+            </div>
+          </div>
+          <div class="cred">
+            <div class="cred-icon">
+              <svg width="24" height="12" viewBox="0 0 24 12" fill="none" aria-hidden="true"><path d="M1 6h22M6 1l-5 5 5 5M18 1l5 5-5 5" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <h4>Professional Memberships</h4>
+              <p>Life Member of IADVL (Indian Association of Dermatologists) &amp; EADV (European Academy)</p>
+            </div>
+          </div>
+          <div class="cred">
+            <div class="cred-icon">
+              <svg width="10" height="20" viewBox="0 0 10 20" fill="none" aria-hidden="true"><path d="M5 1l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6l2-6z" fill="#fff"/></svg>
+            </div>
+            <div>
+              <h4>Awards &amp; Recognition</h4>
+              <p>Excellence in Clinical Dermatology Award [Year] • Regular National Keynote Speaker</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= AUDIT (FORM + PRICE) ================= -->
+    <section class="section" id="audit">
+      <div class="audit-panel">
+        <div class="audit-glow-1"></div>
+        <div class="audit-glow-2"></div>
+
+        <div class="audit-left">
+          <span class="pill-sage">Your first step to better skin</span>
+          <h2 class="h2" style="font-size:40px;">Not Sure What's Going On With<br />Your Skin? Let's Start Here.</h2>
+          <p class="lead">
+            Acne, pigmentation, dryness, or recurring skin concerns? Sometimes, all you need is the right guidance to understand where to begin. Get started with a ₹50 Skin Audit and take the first step towards understanding your skin better.
+          </p>
+
+          <div style="display:flex;flex-direction:column;gap:14px;padding-top:8px;">
+            <div class="checklist-title">What is included in your audit:</div>
+            <ul class="checklist">
+              <li>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="#cfe9d3"/><path d="M5 8l2 2 4-4" stroke="#374d3d" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                15-Minute Structured Skin Concern Assessment Questionnaire
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="#cfe9d3"/><path d="M5 8l2 2 4-4" stroke="#374d3d" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Personalized Barrier &amp; Skin Type Classification
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="#cfe9d3"/><path d="M5 8l2 2 4-4" stroke="#374d3d" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Identification of potential ingredient triggers &amp; current routine conflicts
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="#cfe9d3"/><path d="M5 8l2 2 4-4" stroke="#374d3d" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Doctor's curated Next-Steps Roadmap &amp; consultation recommendation
+              </li>
+            </ul>
+          </div>
+
+          <div class="medical-note">
+            <svg width="15" height="17" viewBox="0 0 15 17" fill="none" aria-hidden="true" style="flex-shrink:0;margin-top:2px;"><path d="M7.5 1L1 3.5v4c0 4 2.8 7 6.5 8.5 3.7-1.5 6.5-4.5 6.5-8.5v-4L7.5 1z" stroke="#737972" stroke-width="1.4" stroke-linejoin="round"/></svg>
+            <div>
+              <b>Medical Note:</b> The ₹50 Skin Audit provides preliminary triage and barrier analysis to inform your consultation. It does not replace a clinical in-person diagnosis or provide prescription medications without formal consult.
+            </div>
+          </div>
+        </div>
+
+        <div class="audit-right">
+          <div class="price-card">
+            <span class="pill">
+              <svg width="9" height="12" viewBox="0 0 9 12" fill="none" aria-hidden="true"><path d="M5 0L0 7h4l-1 5 6-7H5l1-5z" fill="#794e4d"/></svg>
+              Accessible First Assessment
+            </span>
+
+            <div class="old-price">Standard Value: ₹500</div>
+            <div class="price">Just ₹50</div>
+            <div class="price-note">Nominal fee to ensure committed inquiries</div>
+
+            <form class="audit-form" id="auditForm" novalidate>
+              <div>
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Your full name" required autocomplete="name" />
+              </div>
+              <div>
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="you@example.com" required autocomplete="email" />
+              </div>
+              <div>
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="+91 00000 00000" required autocomplete="tel" />
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block" id="submitBtn">
+                Get My Skin Audited
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6h8M7 3l3 3-3 3" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+
+              <div class="form-status" id="formStatus" aria-live="polite"></div>
+              <a class="pay-link hidden" id="payLink" href="https://payments.cashfree.com/forms/getaudit" target="_blank" rel="noopener">Proceed to payment →</a>
+            </form>
+
+            <div class="action-caption">
+              A simple first step towards more informed skincare<br />decisions.
+            </div>
+            <div class="instant-row">
+              <span>
+                <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5.5" stroke="#737972" stroke-width="1.2"/><path d="M6.5 3.5v3l2 1.5" stroke="#737972" stroke-width="1.2" stroke-linecap="round"/></svg>
+                Takes 3 Mins
+              </span>
+              <span>
+                <svg width="11" height="14" viewBox="0 0 11 14" fill="none" aria-hidden="true"><rect x="1" y="6" width="9" height="7" rx="1.5" stroke="#737972" stroke-width="1.2"/><path d="M3 6V4a2.5 2.5 0 015 0v2" stroke="#737972" stroke-width="1.2"/></svg>
+                100% Private
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PATIENT NARRATIVES ================= -->
+    <section class="section-narrow" style="padding-top:64px;">
+      <div class="container" style="padding:0 48px;">
+        <div class="section-head">
+          <div class="section-head-left">
+            <span class="eyebrow">PATIENT NARRATIVES</span>
+            <h2 class="h2">Real People. Real Skin Journeys.</h2>
+            <p class="lead">Good skin care is not just about treatments. It's about feeling heard, understood, and supported throughout the process.</p>
+          </div>
+          <div class="verified-note">
+            <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true"><path d="M7.5 1l2 1.5 2.5-.2.6 2.4 2 1.6-1 2.2 1 2.3-2 1.6-.6 2.4-2.5-.2-2 1.5-2-1.5-2.5.2-.6-2.4-2-1.6 1-2.3-1-2.2 2-1.6.6-2.4 2.5.2 2-1.5z" stroke="#737972" stroke-width="1.1" stroke-linejoin="round"/></svg>
+            Displayed with verified patient permission
+          </div>
+        </div>
+
+        <div class="cards-3">
+          <div class="card-lux">
+            <div>
+              <div class="top">
+                <span class="stars" style="font-size:12px;">★★★★★</span>
+                <span class="pill-sage" style="font-size:11px;padding:4px 12px;text-transform:none;letter-spacing:.66px;">Treated for 4 Months</span>
+              </div>
+              <p class="quote" style="margin-top:16px;">“I finally understood what my skin actually needed. The consultation was informative, and I felt comfortable discussing all my concerns.”</p>
+            </div>
+            <div class="person">
+              <div class="avatar" style="background:var(--sage-light);">AR</div>
+              <div>
+                <h5>[Ananya R.]</h5>
+                <p>Adult Acne &amp; Barrier Repair</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-lux">
+            <div>
+              <div class="top">
+                <span class="stars" style="font-size:12px;">★★★★★</span>
+                <span class="pill-sage" style="font-size:11px;padding:4px 12px;text-transform:none;letter-spacing:.66px;">Maintenance Routine</span>
+              </div>
+              <p class="quote" style="margin-top:16px;">“What I appreciated most was the personal attention. Everything was explained clearly, and I never felt rushed.”</p>
+            </div>
+            <div class="person">
+              <div class="avatar" style="background:#ffdbce;color:#5b4239;">PM</div>
+              <div>
+                <h5>[Priya M.]</h5>
+                <p>Melasma &amp; Hyperpigmentation</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-lux">
+            <div>
+              <div class="top">
+                <span class="stars" style="font-size:12px;">★★★★★</span>
+                <span class="pill-sage" style="font-size:11px;padding:4px 12px;background:#e5e9e4;color:var(--text);text-transform:none;letter-spacing:.66px;">Holistic Care Protocol</span>
+              </div>
+              <p class="quote" style="margin-top:16px;">“I had been trying different skincare products without much clarity. Getting professional guidance helped me approach my skin concerns more thoughtfully.”</p>
+            </div>
+            <div class="person">
+              <div class="avatar" style="background:#ffdad8;color:#7e5352;">RS</div>
+              <div>
+                <h5>[Rohit S.]</h5>
+                <p>Persistent Rosacea &amp; Sensitivity</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= INDEPENDENT FEEDBACK ================= -->
+    <section class="section-narrow" style="padding-top:64px;">
+      <div class="container" style="padding:0 48px;">
+        <div class="feedback-head">
+          <span class="eyebrow">INDEPENDENT FEEDBACK</span>
+          <h2 class="h2">Kind Words Mean a Lot.</h2>
+          <p class="lead">Every review is a reminder of why I love what I do. Thank you to everyone who has trusted me with their skin and hair care journey.</p>
+        </div>
+
+        <div class="banner">
+          <div class="banner-left">
+            <div class="g-logo">G</div>
+            <div>
+              <div style="display:flex;gap:8px;align-items:center;">
+                <span class="banner-rating">4.9</span>
+                <span class="stars">★★★★★</span>
+                <span class="banner-sub">([480+] Google Reviews)</span>
+              </div>
+              <div style="font-size:11px;color:var(--text-muted);font-weight:600;letter-spacing:.66px;margin-top:2px;">100% Authentic Patient Experiences</div>
+            </div>
+          </div>
+          <a href="#testimonials" class="banner-link">View All Verified Google Reviews →</a>
+        </div>
+
+        <div class="reviews-grid" id="testimonials">
+          <div class="review">
+            <div>
+              <div class="review-top"><span class="stars" style="font-size:12px;">★★★★★</span><span>2 weeks ago</span></div>
+              <p class="review-text" style="margin-top:12px;">“Dr. Elena takes the time to explain the root cause rather than pushing expensive procedures. Her recommended routine cleared my cystic breakouts gently.”</p>
+            </div>
+            <div class="review-author"><div class="avatar" style="background:#e5e9e4;">KP</div><span>[Kavita P., Verified Patient]</span></div>
+          </div>
+
+          <div class="review">
+            <div>
+              <div class="review-top"><span class="stars" style="font-size:12px;">★★★★★</span><span>1 month ago</span></div>
+              <p class="review-text" style="margin-top:12px;">“The clinic ambiance is calming and hygienic. She listened patiently to my concerns with hair thinning and prescribed a very practical, effective regimen.”</p>
+            </div>
+            <div class="review-author"><div class="avatar" style="background:#e5e9e4;">AV</div><span>[Arjun V., Verified Patient]</span></div>
+          </div>
+
+          <div class="review">
+            <div>
+              <div class="review-top"><span class="stars" style="font-size:12px;">★★★★★</span><span>3 months ago</span></div>
+              <p class="review-text" style="margin-top:12px;">“Honest, empathetic, and medically sound advice. She told me what treatments I did NOT need, which earned my complete trust.”</p>
+            </div>
+            <div class="review-author"><div class="avatar" style="background:#e5e9e4;">SD</div><span>[Sneha D., Verified Patient]</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FINAL CTA ================= -->
+    <section class="section">
+      <div class="cta-block">
+        <svg class="cta-deco" viewBox="0 0 250 256" fill="none" aria-hidden="true"><path d="M125 256V40M125 120c-30-20-55-10-70-40M125 150c30-22 58-10 75-42" stroke="#fff" stroke-width="3" stroke-linecap="round"/></svg>
+        <span class="eyebrow">BEGIN YOUR JOURNEY</span>
+        <h2 class="h2">Your Skin Deserves the Right<br />Attention.</h2>
+        <p>Whether you're dealing with a specific skin concern or simply want expert guidance, let's take the first step together.</p>
+        <div class="cta-buttons">
+          <a href="#audit" class="btn btn-white">Book Your Consultation</a>
+          <a href="#audit" class="btn btn-primary">Start With a ₹50 Skin Audit</a>
+        </div>
+        <div class="reassure">Slots available this week • Flexible rescheduling • In-clinic in Mumbai / Delhi &amp; Virtual video consultations</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="wordmark">
+          <div class="logo-dot">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1c-3 3-5 5-5 8a5 5 0 0010 0c0-3-2-5-5-8z" fill="#fff"/></svg>
+          </div>
+          <b>Dr. jeni</b>
+        </div>
+        <p>Consultant Dermatologist &amp; Aesthetic Physician • MD, Fellow Aesthetic Medicine.</p>
+        <span class="reg">Reg No: 25ucbxxx</span>
+      </div>
+
+      <div class="footer-col col-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#top">Home</a></li>
+          <li><a href="#experience">About Doctor</a></li>
+          <li><a href="#experience">Achievements</a></li>
+          <li><a href="#audit">₹50 Skin Audit</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#testimonials">Reviews</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col col-clinic">
+        <h3>Clinic Practice</h3>
+        <div class="item">
+          <svg width="12" height="17" viewBox="0 0 12 17" fill="none" aria-hidden="true" style="flex-shrink:0;margin-top:2px;"><path d="M6 1a5 5 0 00-5 5c0 3.5 5 10 5 10s5-6.5 5-10a5 5 0 00-5-5z" stroke="#737972" stroke-width="1.2"/></svg>
+          <span>[jeni clinic] TVS nagar, koundanpalayam, coimbatore 641004</span>
+        </div>
+        <div class="item">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" style="flex-shrink:0;margin-top:2px;"><path d="M3 1h2l1 3-1.5 1a7 7 0 003.5 3.5L9 7l3 1v2a1 1 0 01-1 1A10 10 0 012 2a1 1 0 011-1z" stroke="#737972" stroke-width="1.1" stroke-linejoin="round"/></svg>
+          <span>[+91 739612029]</span>
+        </div>
+        <div class="item">
+          <svg width="15" height="12" viewBox="0 0 15 12" fill="none" aria-hidden="true" style="flex-shrink:0;margin-top:3px;"><rect x="1" y="1" width="13" height="10" rx="1.5" stroke="#737972" stroke-width="1.1"/><path d="M1.5 2l6 4.5L13.5 2" stroke="#737972" stroke-width="1.1"/></svg>
+          <span>jenidharshini77@gmail.com</span>
+        </div>
+        <div class="item">
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true" style="flex-shrink:0;margin-top:2px;"><circle cx="7.5" cy="7.5" r="6" stroke="#737972" stroke-width="1.1"/><path d="M7.5 4v4l2.5 1.5" stroke="#737972" stroke-width="1.1" stroke-linecap="round"/></svg>
+          <span>Mon – Sat: 10:00 AM – 7:00 PM</span>
+        </div>
+      </div>
+
+      <div class="footer-col col-connect">
+        <h3>Connect &amp; Learn</h3>
+        <p style="font-size:12px;line-height:18px;color:var(--text-body);">Evidence-based skincare education and weekly Q&amp;A sessions.</p>
+        <div class="item"><span>Instagram: @dharsh.iiee08</span></div>
+        <div class="item"><span>YouTube: jeni skincare Education</span></div>
+        <div class="item"><span>LinkedIn ID: jeni77.....</span></div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2025 Dr. Elena Vance. All Rights Reserved.</span>
+      <nav>
+        <a href="#">Privacy Policy</a>
+        <span>•</span>
+        <a href="#">Terms &amp; Conditions</a>
+        <span>•</span>
+        <span>Medical Disclaimer: Educational only, does not constitute formal prescription without consult.</span>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    // ---- Config ----
+    var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzfslHuWC3p38MK2-_774d3sRTTdVwjuGwfcaihA4x_rUu0xlUw_12HwxjibFcxpIaTYA/exec";
+
+    // ---- Elements ----
+    var form = document.getElementById("auditForm");
+    var submitBtn = document.getElementById("submitBtn");
+    var statusEl = document.getElementById("formStatus");
+    var payLink = document.getElementById("payLink");
+
+    function setLoading(isLoading) {
+      submitBtn.disabled = isLoading;
+      submitBtn.firstChild.textContent = isLoading ? "Submitting... " : "Get My Skin Audited ";
+    }
+
+    function showSuccess() {
+      setLoading(false);
+      statusEl.className = "form-status success";
+      statusEl.textContent = "Thank you! Your details have been received.";
+      payLink.classList.remove("hidden");
+      form.reset();
+    }
+
+    function showError() {
+      setLoading(false);
+      statusEl.className = "form-status error";
+      statusEl.textContent = "Something went wrong. Please try again.";
+    }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      var name = document.getElementById("name").value.trim();
+      var email = document.getElementById("email").value.trim();
+      var phone = document.getElementById("phone").value.trim();
+
+      if (!name || !email || !phone) {
+        statusEl.className = "form-status error";
+        statusEl.textContent = "Please fill in name, email and phone.";
+        return;
+      }
+
+      statusEl.className = "form-status";
+      statusEl.textContent = "";
+      payLink.classList.add("hidden");
+      setLoading(true);
+
+      var url = SCRIPT_URL + "?" + new URLSearchParams({ name: name, email: email, phone: phone });
+
+      fetch(url, { method: "GET", mode: "no-cors" })
+        .then(function () { showSuccess(); })
+        .catch(function () { showError(); });
+    });
+  </script>
+</body>
+</html>
